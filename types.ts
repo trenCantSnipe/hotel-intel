@@ -2,7 +2,8 @@ export interface HotelData {
   name: string;
   ownerEmail: string;
   companyEmail: string;
-  phone: string;
+  companyPhone: string;
+  ownerPhone: string;
   website: string;
   websiteQuality: string;
   hasChatbot: string;

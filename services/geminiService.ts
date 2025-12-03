@@ -18,16 +18,17 @@ export const searchHotels = async (location: string): Promise<{ hotels: HotelDat
       1. Name of the Hotel/Resort
       2. Owner's Email (if publicly disclosed, otherwise "N/A")
       3. Company/General Email (e.g., info@, reservations@)
-      4. Phone Number
-      5. Website URL
-      6. Website Quality Assessment (Briefly: Modern/Outdated/UX Good/Bad)
-      7. Does it have a Chatbot Assistant? (Yes/No)
-      8. Chatbot Quality Assessment (if applicable, otherwise "N/A")
-      9. A Rating based on online reputation (1-10)
-      10. Extra Comments (Special features, price range, etc.)
+      4. Company Phone Number
+      5. Owner's Phone Number (if publicly disclosed, otherwise "N/A")
+      6. Website URL
+      7. Website Quality Assessment (Briefly: Modern/Outdated/UX Good/Bad)
+      8. Does it have a Chatbot Assistant? (Yes/No)
+      9. Chatbot Quality Assessment (if applicable, otherwise "N/A")
+      10. A Rating based on online reputation (1-10)
+      11. Extra Comments (Special features, price range, etc.)
 
       Provide the output as a Markdown table so I can parse it easily.
-      The columns should be strictly: Name | Owner Email | Company Email | Phone | Website | Website Quality | Has Chatbot | Chatbot Quality | Rating | Comments
+      The columns should be strictly: Name | Owner Email | Company Email | Company Phone | Owner Phone | Website | Website Quality | Has Chatbot | Chatbot Quality | Rating | Comments
       
       Do not wrap the table in a code block. Just provide the table.
       Try to find at least 10-15 top results.
@@ -38,7 +39,6 @@ export const searchHotels = async (location: string): Promise<{ hotels: HotelDat
       contents: prompt,
       config: {
         tools: [{ googleSearch: {} }],
-        // responseMimeType cannot be JSON when using search tools
       },
     });
 
@@ -98,19 +98,20 @@ const parseMarkdownTable = (markdown: string): HotelData[] => {
       // Process data rows
       const cells = trimmed.split('|').map(c => c.trim()).filter(c => c !== '');
       
-      // Ensure we have enough cells (we asked for 10 columns)
+      // Ensure we have enough cells (we asked for 11 columns now)
       if (cells.length >= 2) { // Minimal validation
         data.push({
           name: cells[0] || "N/A",
           ownerEmail: cells[1] || "N/A",
           companyEmail: cells[2] || "N/A",
-          phone: cells[3] || "N/A",
-          website: cells[4] || "N/A",
-          websiteQuality: cells[5] || "N/A",
-          hasChatbot: cells[6] || "N/A",
-          chatbotQuality: cells[7] || "N/A",
-          rating: cells[8] || "N/A",
-          comments: cells[9] || "N/A",
+          companyPhone: cells[3] || "N/A",
+          ownerPhone: cells[4] || "N/A",
+          website: cells[5] || "N/A",
+          websiteQuality: cells[6] || "N/A",
+          hasChatbot: cells[7] || "N/A",
+          chatbotQuality: cells[8] || "N/A",
+          rating: cells[9] || "N/A",
+          comments: cells[10] || "N/A",
         });
       }
     }

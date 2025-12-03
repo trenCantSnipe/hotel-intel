@@ -18,7 +18,8 @@ const HotelTable: React.FC<HotelTableProps> = ({ data }) => {
             <th className="px-4 py-3 text-left whitespace-nowrap sticky left-0 bg-gray-50 z-10 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">Name</th>
             <th className="px-4 py-3 text-left whitespace-nowrap">Owner Email</th>
             <th className="px-4 py-3 text-left whitespace-nowrap">Company Email</th>
-            <th className="px-4 py-3 text-left whitespace-nowrap">Phone</th>
+            <th className="px-4 py-3 text-left whitespace-nowrap">Company Phone</th>
+            <th className="px-4 py-3 text-left whitespace-nowrap">Owner Phone</th>
             <th className="px-4 py-3 text-left whitespace-nowrap">Website</th>
             <th className="px-4 py-3 text-left whitespace-nowrap">Web Quality</th>
             <th className="px-4 py-3 text-left whitespace-nowrap">Chatbot?</th>
@@ -39,7 +40,8 @@ const HotelTable: React.FC<HotelTableProps> = ({ data }) => {
                     <a href={`mailto:${hotel.companyEmail}`} className="text-blue-600 hover:underline">{hotel.companyEmail}</a>
                 ) : "N/A"}
               </td>
-              <td className="px-4 py-3 text-gray-600">{hotel.phone}</td>
+              <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{hotel.companyPhone}</td>
+              <td className="px-4 py-3 text-gray-600 whitespace-nowrap">{hotel.ownerPhone}</td>
               <td className="px-4 py-3 text-gray-600 max-w-[200px] truncate">
                  {hotel.website !== "N/A" && hotel.website.startsWith('http') ? (
                     <a href={hotel.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline flex items-center gap-1">
