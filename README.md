@@ -1,20 +1,25 @@
-<div align="center">
+# 🏨 HotelIntel: Market Research Bot
 
-</div>
+Enter a city and HotelIntel finds hotels and resorts there, then sizes up each one as a sales lead: contact details, how good their website is, and **whether they already have a chatbot**. I built it to find hotels that would benefit from an AI concierge (see [ConciergeAI](https://github.com/trenCantSnipe/ConciergeAI)).
 
-# Run and deploy your AI Studio app
+## Features
 
-This contains everything you need to run your app locally.
+- Location-based discovery of hotels using Gemini with **Google Search grounding**
+- Per-property extraction: name, phone, email, website
+- Website-quality and chatbot-presence scoring
+- Sortable results table with **CSV export** for outreach
 
-View your app in AI Studio: https://ai.studio/apps/drive/1nIPQNyyt1RkqT3A27cvUnAXkotVuxJ_V
+## Tech stack
 
-## Run Locally
+React 19 · TypeScript · Vite · Gemini 2.5 Flash · Google Search grounding
 
-**Prerequisites:**  Node.js
+## Run locally
 
+```bash
+git clone https://github.com/trenCantSnipe/hotel-intel.git && cd hotel-intel
+npm install
+echo "GEMINI_API_KEY=your_key_here" > .env.local
+npm run dev
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Get a free key at [Google AI Studio](https://aistudio.google.com/apikey). The key stays in `.env.local`, which is git-ignored.
